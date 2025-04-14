@@ -17,17 +17,46 @@ namespace listaDoble {
 
         //elimina un valor al inicio de LE Doble
         public void EliminaPrimero(int valor) {
+            if (this.Primero == null) {
+                return;
+            } else if (this.Primero == this.Ultimo) {
+                this.Primero = null;
+                this.Ultimo = null;
+                return;
+            } else {
+                Nodo segundo = this.Primero.Sig;
+                this.Primero.Sig = null;
+                segundo.Ant = null;
+                this.Primero = segundo;
+                return;
+            }
 
+            
         }
 
         //retorna el valor de una pocicion de la LEDoble iniciando por la posicion cero
         public int GetValor(int pos) {
-            return 0;
+            Nodo actual = this.Primero;
+            int index = 0;
+            while (actual != null) {
+                if (index == pos) {
+                    return actual.Dato;
+                }
+                actual = actual.Sig;
+                index++;
+            }
+            throw new IndexOutOfRangeException("Posición fuera de rango");
         }
 
         //Retorn la cantidad de valores que tiene la LEDoble
         public int Largo() {
-            return 0;
+            int contador = 0;
+            Nodo actual = this.Primero;
+            while (actual != null) {
+                contador++;
+                actual = actual.Sig;
+            }
+            return contador;
         }
 
         //agrega un valor al final de LE Doble
